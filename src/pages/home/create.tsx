@@ -1,5 +1,5 @@
 function HomePage() {
-    return <div>Welcome to Next.js!</div>
+    return <div>Welcome to Home create page</div>
 }
 
 export async function getServerSideProps(context) {

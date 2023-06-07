@@ -88,15 +88,16 @@ export default class Route {
     return this;
   }
 
-  async build() {
+  build() {
     const pathName: string = this.pathName.substring(5);
-    console.log(!!this.router, this.method, this.url, pathName);
+    console.log(!!this.method, this.method, this.url, pathName);
+    console.log(this.url);
     this.router[this.method](
       this.url,
       ...this.middleware,
       async (req, res) => {
         try {
-            const nextApp: NextServer = (await import('../Server.ts')).default
+            const nextApp: NextServer = require('../Server.ts').default
               .nextApp;
             console.log(!!nextApp, pathName);
             this.request = req;
@@ -109,5 +110,6 @@ export default class Route {
         }
       },
     );
+    return this.router;
   }
 }
